@@ -27,20 +27,12 @@ export function DashboardGrid() {
   const { enabledWidgets } = useDashboard()
 
   return (
-    <div className="w-full overflow-x-auto">
-      <div className="min-w-[1100px] max-w-[1400px] mx-auto">
-        <div
-          className="grid gap-3"
-          style={{
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gridAutoRows: "min-content",
-          }}
-        >
-          {enabledWidgets.map((widgetId) => {
-            const WidgetComponent = widgetComponents[widgetId as keyof typeof widgetComponents]
-            return WidgetComponent ? <WidgetComponent key={widgetId} /> : null
-          })}
-        </div>
+    <div className="w-full max-w-[1400px] mx-auto">
+      <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {enabledWidgets.map((widgetId: string) => {
+          const WidgetComponent = widgetComponents[widgetId as keyof typeof widgetComponents]
+          return WidgetComponent ? <WidgetComponent key={widgetId} /> : null
+        })}
       </div>
     </div>
   )
